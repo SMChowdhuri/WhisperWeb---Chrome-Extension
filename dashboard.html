@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feedback Dashboard</title>
+  <link href="vendor/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="dashboard.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <div class="dashboard-header">
+      <h2><i class="fas fa-comments"></i> Feedback Dashboard</h2>
+      <div class="current-url" id="currentUrl">
+        <small class="text-muted">Loading current page...</small>
+      </div>
+      <div class="mt-2">
+        <small class="text-info">
+          <i class="fas fa-chart-bar"></i> 
+          <span id="headerFeedbackCount">0</span> feedback items for this page
+        </small>
+      </div>
+    </div>
+
+    <!-- Add Feedback Section -->
+    <div class="add-feedback-section">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0"><i class="fas fa-plus"></i> Add Anonymous Feedback</h5>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <textarea id="feedbackText" class="form-control" rows="3" 
+                      placeholder="Share your thoughts about this page anonymously..."></textarea>
+          </div>
+          <button id="submitFeedback" class="btn btn-primary btn-block">
+            <i class="fas fa-paper-plane"></i> Submit Feedback
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Summary Section -->
+    <div class="ai-summary-section" style="display: none;" id="aiSummarySection">
+      <div class="card border-success">
+        <div class="card-header bg-success text-white">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0"><i class="fas fa-robot"></i> AI Summary</h5>
+            <button id="generateSummaryBtn" class="btn btn-sm btn-light">
+              <i class="fas fa-magic"></i> Generate Summary
+            </button>
+          </div>
+        </div>
+        <div class="card-body" id="summaryContent" style="display: none;">
+          <div id="summaryText"></div>
+          <small class="text-muted mt-2 d-block">
+            <i class="fas fa-info-circle"></i> Powered by Google Gemini
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Count & Stats -->
+    <div class="stats-section">
+      <div class="row">
+        <div class="col-6">
+          <div class="stat-card">
+            <div class="stat-number" id="feedbackCount">0</div>
+            <div class="stat-label">Total Feedback</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="stat-card">
+            <div class="stat-number" id="todayCount">0</div>
+            <div class="stat-label">Today</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback List -->
+    <div class="feedback-list-section">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5><i class="fas fa-list"></i> Recent Feedback</h5>
+        <div>
+          <button id="refreshBtn" class="btn btn-sm btn-outline-primary">
+            <i class="fas fa-sync"></i> Refresh
+          </button>
+          <button id="urlDebugBtn" class="btn btn-sm btn-outline-info ml-1" title="Debug URL matching" style="display: none;">
+            <i class="fas fa-search"></i> URL Debug
+          </button>
+        </div>
+      </div>
+      
+      <div class="search-section mb-3">
+        <input type="text" id="searchFeedback" class="form-control" 
+               placeholder="Search feedback...">
+      </div>
+
+      <div id="feedbackList" class="feedback-list">
+        <div class="text-center text-muted py-4">
+          <i class="fas fa-spinner fa-spin fa-2x"></i>
+          <p class="mt-2">Loading feedback...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Summary Message -->
+    <div class="alert alert-info" id="aiMessage" style="display: none;">
+      <i class="fas fa-info-circle"></i>
+      <span id="aiMessageText">Need at least 5 feedback items to generate AI summary</span>
+    </div>
+
+    <!-- Diagnostic Panel (hidden by default) -->
+    <div class="alert alert-warning" id="diagnosticPanel" style="display: none;">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <i class="fas fa-tools"></i>
+          <strong>Feedback Not Loading?</strong>
+          <small class="d-block">Click to run quick diagnostic</small>
+        </div>
+        <button id="runDiagnosticBtn" class="btn btn-sm btn-warning">
+          <i class="fas fa-stethoscope"></i> Diagnose
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- No external scripts needed for core functionality -->
+  <script src="ai-config.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
