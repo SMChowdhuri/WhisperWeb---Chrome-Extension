@@ -1,7 +1,8 @@
 // AI Configuration for Feedback Analysis
 const AI_CONFIG = {
   gemini: {
-    apiKey: 'AIzaSyCe_s58z1KhkFj16_-w5MoDeRT-laL85WE', // Add your Gemini API key here
+    // If you want to use the Gemini API, add your API key below
+    apiKey: '', // Add your Gemini API key here
     baseUrl: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent',
     enabled: true
   }
